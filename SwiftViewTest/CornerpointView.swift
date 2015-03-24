@@ -10,15 +10,22 @@ import UIKit
 
 class CornerpointView: UIView
 {
+  var  cornerpointDelegate: CornerpointClientProtocol?
   let dragger: UIPanGestureRecognizer!
+  var dragStart: CGPoint!
   var centerPoint: CGPoint?
     {
     didSet(oldPoint)
     {
       if let newCenter = centerPoint
       {
+        self.hidden = false
         self.center = newCenter
         //println("newCenter = \(newCenter)")
+      }
+      else
+      {
+        self.hidden = true
       }
     }
   }
@@ -57,5 +64,22 @@ class CornerpointView: UIView
   func handleCornerDrag(thePanner: UIPanGestureRecognizer)
   {
     //println("In cornerpoint dragger")
+    let newPoint = thePanner.locationInView(self)
+
+    switch thePanner.state
+    {
+    case UIGestureRecognizerState.Began:
+      dragStart = centerPoint
+      thePanner.setTranslation(CGPointZero,
+        inView: self)
+      //println("In view dragger began at \(newPoint)")
+      
+    case UIGestureRecognizerState.Changed:
+      //println("In view dragger changed at \(newPoint)")
+      centerPoint = CGPointMake(dragStart.x + thePanner.translationInView(self).x,
+        dragStart.y + thePanner.translationInView(self).y)
+    default:
+      print("")
+    }
   }
 }

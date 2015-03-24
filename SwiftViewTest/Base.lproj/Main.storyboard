@@ -24,12 +24,18 @@
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="cropDelegate" destination="BYZ-38-t0r" id="rN3-7W-ahK"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYN-zp-Orb">
                                 <rect key="frame" x="283" y="560" width="34" height="30"/>
                                 <state key="normal" title="Crop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="handleCropButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YvP-e4-VHB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -48,6 +54,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="cropButton" destination="WYN-zp-Orb" id="kSh-6N-vn3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

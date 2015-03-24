@@ -24,11 +24,11 @@ func rectFromStartAndEnd(var startPoint:CGPoint, endPoint: CGPoint) -> CGRect
 }
 
 //----------------------------------------------------------------------------------------------------------
-class CroppableImageView: UIView
+class CroppableImageView: UIView, CornerpointClientProtocol
 {
 
   // MARK: - properties -
-  
+  @IBOutlet var  cropDelegate: CropVCProtocol?
   let myImageView:UIImageView
   let dragger: UIPanGestureRecognizer!
   var cornerpoints =  [CornerpointView]()
@@ -39,27 +39,29 @@ class CroppableImageView: UIView
     {
     didSet(oldRect)
     {
-      if cropRect != oldRect
+      //println("rect changed to \(cropRect)")
+      if let realCropRect = cropRect
       {
-        //println("rect changed to \(cropRect)")
-        if let realCropRect = cropRect
-        {
-          //println("Croprect = \(cropRect!). Setting cornerpoints")
-          cornerpoints[0].centerPoint = realCropRect.origin
-          cornerpoints[1].centerPoint = CGPointMake(CGRectGetMaxX(realCropRect), realCropRect.origin.y)
-          cornerpoints[2].centerPoint = CGPointMake(realCropRect.origin.x, CGRectGetMaxY(realCropRect))
-          cornerpoints[3].centerPoint = CGPointMake(CGRectGetMaxX(realCropRect),CGRectGetMaxY(realCropRect))
-        }
-        else
-        {
-          for aCornerpoint in cornerpoints
-          {
-            aCornerpoint.centerPoint = nil;
-          }
-        }
-
-        self.setNeedsDisplay()
+        //println("Croprect = \(cropRect!). Setting cornerpoints")
+        cornerpoints[0].centerPoint = realCropRect.origin
+        cornerpoints[1].centerPoint = CGPointMake(CGRectGetMaxX(realCropRect), realCropRect.origin.y)
+        cornerpoints[2].centerPoint = CGPointMake(realCropRect.origin.x, CGRectGetMaxY(realCropRect))
+        cornerpoints[3].centerPoint = CGPointMake(CGRectGetMaxX(realCropRect),CGRectGetMaxY(realCropRect))
       }
+      else
+      {
+        for aCornerpoint in cornerpoints
+        {
+          aCornerpoint.centerPoint = nil;
+        }
+      }
+      if cropDelegate != nil
+      {
+        cropDelegate!.haveValidCropRect(cropRect != nil)
+      }
+      
+      
+      self.setNeedsDisplay()
     }
   }
   //---------------------------------------------------------------------------------------------------------
@@ -70,7 +72,8 @@ class CroppableImageView: UIView
   {
     for i in 1...4
     {
-      cornerpoints.append(CornerpointView())
+      var aCornerpointView = CornerpointView()
+       cornerpoints.append(aCornerpointView)
       //cornerpoints += [CornerpointView()]
     }
 
@@ -83,6 +86,13 @@ class CroppableImageView: UIView
     dragger = UIPanGestureRecognizer(target: self as AnyObject, action: "handleDragInView:")
     self.addGestureRecognizer(dragger)
 
+    let tapper = UITapGestureRecognizer(target: self as AnyObject,
+      action: "handleViewTap:");
+    self.addGestureRecognizer(tapper)
+    for aCornerpoint in cornerpoints
+    {
+      tapper.requireGestureRecognizerToFail(aCornerpoint.dragger)
+    }
     
     //Install a test image into the image view.
     let myImage = UIImage(named: "Scampers 6685")
@@ -105,6 +115,7 @@ class CroppableImageView: UIView
     for aCornerpoint in cornerpoints
     {
       self.addSubview(aCornerpoint)
+      aCornerpoint.cornerpointDelegate = self;
     }
     
     //Set up constraints to pin the image view to the edges of this view.
@@ -143,8 +154,9 @@ class CroppableImageView: UIView
       multiplier: 1.0,
       constant: 0)
     self.superview!.addConstraint(aConstraint)
-
+    cropRect = nil;
   }
+  
   override func layoutSubviews()
   {
     super.layoutSubviews()
@@ -171,6 +183,7 @@ class CroppableImageView: UIView
 // MARK: - custom instance methods -
 //---------------------------------------------------------------------------------------------------------
 
+  
   func handleDragInView(thePanner: UIPanGestureRecognizer)
   {
     let newPoint = thePanner.locationInView(self)
@@ -188,5 +201,13 @@ class CroppableImageView: UIView
     }
   }
 
+  func handleViewTap(theTapper: UITapGestureRecognizer)
+  {
+    self.cropRect = nil
+  }
   
+  func cornerHasChanged(CornerpointView)
+  {
+    println("In cornerHasChanged")
+  }
 }

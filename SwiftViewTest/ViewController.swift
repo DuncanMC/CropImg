@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CropVCProtocol
+{
 
+  @IBOutlet weak var cropButton: UIButton!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +23,16 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
+  @IBAction func handleCropButton(sender: UIButton)
+  {
+    println("crop button tapped")
+  }
 
+  
+  func haveValidCropRect(haveValidCropRect:Bool)
+  {
+    //println("In haveValidCropRect. Value = \(haveValidCropRect)")
+    cropButton.enabled = haveValidCropRect
+  }
 }
 
