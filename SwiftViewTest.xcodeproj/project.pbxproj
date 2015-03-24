@@ -13,6 +13,8 @@
 		AE788CDB1AC1B60200A32E20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE788CDA1AC1B60200A32E20 /* Images.xcassets */; };
 		AE788CDE1AC1B60200A32E20 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE788CDC1AC1B60200A32E20 /* LaunchScreen.xib */; };
 		AE788CEA1AC1B60200A32E20 /* SwiftViewTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CE91AC1B60200A32E20 /* SwiftViewTestTests.swift */; };
+		AE788CF41AC1B68500A32E20 /* CroppableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CF31AC1B68500A32E20 /* CroppableImageView.swift */; };
+		AE788CF61AC1D48600A32E20 /* CornerpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CF51AC1D48600A32E20 /* CornerpointView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		AE788CE31AC1B60200A32E20 /* SwiftViewTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftViewTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE788CE81AC1B60200A32E20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE788CE91AC1B60200A32E20 /* SwiftViewTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftViewTestTests.swift; sourceTree = "<group>"; };
+		AE788CF31AC1B68500A32E20 /* CroppableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CroppableImageView.swift; sourceTree = "<group>"; };
+		AE788CF51AC1D48600A32E20 /* CornerpointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerpointView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			children = (
 				AE788CD31AC1B60200A32E20 /* AppDelegate.swift */,
 				AE788CD51AC1B60200A32E20 /* ViewController.swift */,
+				AE788CF31AC1B68500A32E20 /* CroppableImageView.swift */,
+				AE788CF51AC1D48600A32E20 /* CornerpointView.swift */,
 				AE788CD71AC1B60200A32E20 /* Main.storyboard */,
 				AE788CDA1AC1B60200A32E20 /* Images.xcassets */,
 				AE788CDC1AC1B60200A32E20 /* LaunchScreen.xib */,
@@ -213,6 +219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE788CD61AC1B60200A32E20 /* ViewController.swift in Sources */,
+				AE788CF41AC1B68500A32E20 /* CroppableImageView.swift in Sources */,
+				AE788CF61AC1D48600A32E20 /* CornerpointView.swift in Sources */,
 				AE788CD41AC1B60200A32E20 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
