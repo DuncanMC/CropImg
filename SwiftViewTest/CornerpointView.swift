@@ -15,7 +15,11 @@ class CornerpointView: UIView
     {
     didSet(oldPoint)
     {
-    
+      if let newCenter = centerPoint
+      {
+        self.center = newCenter
+        //println("newCenter = \(newCenter)")
+      }
     }
   }
   
@@ -37,13 +41,21 @@ class CornerpointView: UIView
   
   func doSetup()
   {
+    self.bounds.size = CGSizeMake(30, 30)
+    var newLayer = CALayer()
+    newLayer.position = CGPointMake(CGRectGetMidX(self.layer.bounds), CGRectGetMidY(self.layer.bounds))
+    newLayer.bounds.size = CGSizeMake(7, 7)
+    newLayer.borderWidth = 1.0
+    newLayer.borderColor = UIColor(red: 0, green: 0, blue: 1.0, alpha: 0.5).CGColor
+    newLayer.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5).CGColor
+    self.layer.addSublayer(newLayer)
+    self.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).CGColor
     self.layer.borderWidth = 1.0
-    self.layer.borderColor = UIColor.blueColor().CGColor
     
   }
   
   func handleCornerDrag(thePanner: UIPanGestureRecognizer)
   {
-    println("In cornerpoint dragger")
+    //println("In cornerpoint dragger")
   }
 }
