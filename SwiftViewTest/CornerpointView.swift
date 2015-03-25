@@ -53,11 +53,28 @@ class CornerpointView: UIView
     newLayer.position = CGPointMake(CGRectGetMidX(self.layer.bounds), CGRectGetMidY(self.layer.bounds))
     newLayer.bounds.size = CGSizeMake(7, 7)
     newLayer.borderWidth = 1.0
-    newLayer.borderColor = UIColor(red: 0, green: 0, blue: 1.0, alpha: 0.5).CGColor
+    newLayer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).CGColor
     newLayer.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5).CGColor
+    
+    var shapeLayer = CAShapeLayer()
+    shapeLayer.frame = self.layer.bounds
+    shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
+    shapeLayer.strokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2).CGColor
+    shapeLayer.lineWidth = 3.0;
+    shapeLayer.fillColor = UIColor.clearColor().CGColor
+    self.layer.addSublayer(shapeLayer)
+    
+    shapeLayer = CAShapeLayer()
+    shapeLayer.frame = self.layer.bounds
+    shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
+    shapeLayer.strokeColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor
+    shapeLayer.lineWidth = 1;
+    shapeLayer.fillColor = UIColor.clearColor().CGColor
+    self.layer.addSublayer(shapeLayer)
     self.layer.addSublayer(newLayer)
-    self.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).CGColor
-    self.layer.borderWidth = 1.0
+//    self.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).CGColor
+//    self.layer.borderWidth = 1.0
+    
     
   }
   
@@ -78,6 +95,10 @@ class CornerpointView: UIView
       //println("In view dragger changed at \(newPoint)")
       centerPoint = CGPointMake(dragStart.x + thePanner.translationInView(self).x,
         dragStart.y + thePanner.translationInView(self).y)
+      if let theDelegate = cornerpointDelegate
+      {
+        theDelegate.cornerHasChanged(self)
+      }
     default:
       print("")
     }

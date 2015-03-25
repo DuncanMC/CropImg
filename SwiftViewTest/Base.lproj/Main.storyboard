@@ -56,6 +56,7 @@
                     </view>
                     <connections>
                         <outlet property="cropButton" destination="WYN-zp-Orb" id="kSh-6N-vn3"/>
+                        <outlet property="cropView" destination="Kvb-6K-ReN" id="PWP-QI-nbn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
