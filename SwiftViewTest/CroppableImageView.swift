@@ -29,10 +29,13 @@ class CroppableImageView: UIView, CornerpointClientProtocol
 
   // MARK: - properties -
   var  myImage: UIImage?
+  var  imageSize: CGSize?
+  var  imageRect: CGRect?
+  var aspect: CGFloat
   var draggingRect: Bool = false
 
   @IBOutlet var  cropDelegate: CropVCProtocol?
-  let myImageView:UIImageView
+//  let myImageView:UIImageView
   let dragger: UIPanGestureRecognizer!
   var cornerpoints =  [CornerpointView]()
   
@@ -45,7 +48,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     {
       if let realCropRect = newValue
       {
-        var newRect:CGRect =  CGRectIntersection(realCropRect, self.bounds)
+        var newRect:CGRect =  CGRectIntersection(realCropRect, imageRect!)
         internalCropRect = newRect
         cornerpoints[0].centerPoint = newRect.origin
         cornerpoints[1].centerPoint = CGPointMake(CGRectGetMaxX(newRect), newRect.origin.y)
@@ -88,11 +91,14 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     }
 
     //Add an imageview as a child of this view
-    myImageView = UIImageView(frame: CGRectZero)
-    myImage = UIImage(named: "Scampers 6685")
-
+//    myImageView = UIImageView(frame: CGRectZero)
+    //myImage = UIImage(named: "Scampers 6685")
+    myImage = UIImage(named: "Sprite picture (large)")
+    imageSize = myImage?.size
+    aspect = 1
+    
     super.init(coder: aDecoder)
-    myImageView.frame = self.frame
+//    myImageView.frame = self.frame
     
     //myImageView.hidden = true
     dragger = UIPanGestureRecognizer(target: self as AnyObject, action: "handleDragInView:")
@@ -107,11 +113,11 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     }
     
     //Install a test image into the image view.
-    myImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-    myImageView.contentMode = UIViewContentMode.ScaleAspectFit
+//    myImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+//    myImageView.contentMode = UIViewContentMode.TopLeft
 //    myImageView.layer.borderWidth = 2.0
 //    myImageView.layer.borderColor = UIColor.blueColor().CGColor
-    myImageView.image = myImage
+//    myImageView.image = myImage
   }
   
 //---------------------------------------------------------------------------------------------------------
@@ -121,7 +127,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
   override func awakeFromNib()
   {
     super.awakeFromNib()
-    self.superview?.insertSubview(myImageView, belowSubview: self)
+//    self.superview?.insertSubview(myImageView, belowSubview: self)
 
     for aCornerpoint in cornerpoints
     {
@@ -129,6 +135,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       aCornerpoint.cornerpointDelegate = self;
     }
     
+  /*
     //Set up constraints to pin the image view to the edges of this view.
     var aConstraint = NSLayoutConstraint(item: self,
       attribute: NSLayoutAttribute.Top,
@@ -166,18 +173,35 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       constant: 0)
     self.superview!.addConstraint(aConstraint)
     cropRect = nil;
+*/
   }
   
   override func layoutSubviews()
   {
     super.layoutSubviews()
     cropRect = nil;
+    
+    //If we have an image...
+    if let requiredImageSize = imageSize
+    {
+      var displaySize: CGSize = CGSizeZero
+      displaySize.width = min(requiredImageSize.width, self.bounds.size.width)
+      displaySize.height = min(requiredImageSize.height, self.bounds.size.height)
+      let heightAsepct: CGFloat = displaySize.height/requiredImageSize.height
+      let widthAsepct: CGFloat = displaySize.width/requiredImageSize.width
+      aspect = min(heightAsepct, widthAsepct)
+      displaySize.height = requiredImageSize.height * aspect
+      displaySize.width = requiredImageSize.width * aspect
+      
+      imageRect = CGRectMake(0, 0, displaySize.width, displaySize.height)
+    }
   }
   
 //---------------------------------------------------------------------------------------------------------
   
  override func drawRect(rect: CGRect)
   {
+    myImage?.drawInRect(imageRect!)
     if let realCropRect = internalCropRect
     { 
       let path = UIBezierPath(rect: realCropRect)
@@ -196,10 +220,19 @@ class CroppableImageView: UIView, CornerpointClientProtocol
 
   func croppedImage() -> UIImage?
   {
-    if let cropRect = internalCropRect
+    if var cropRect = internalCropRect
     {
-      UIGraphicsBeginImageContextWithOptions(cropRect.size, true, 0)
-      myImage?.drawInRect(self.bounds)
+      var drawRect: CGRect = CGRectZero
+      drawRect.size = imageSize!
+      drawRect.origin.x = round(-cropRect.origin.x / aspect)
+      drawRect.origin.y = round(-cropRect.origin.y / aspect)
+      cropRect.size.width = round(cropRect.size.width/aspect)
+      cropRect.size.height = round(cropRect.size.height/aspect)
+      cropRect.origin.x = round(cropRect.origin.x)
+      cropRect.origin.y = round(cropRect.origin.y)
+      
+      UIGraphicsBeginImageContextWithOptions(cropRect.size, true, 1)
+      myImage?.drawInRect(drawRect)
       var result = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext();
       
@@ -236,14 +269,14 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       if draggingRect
       {
         var newX = max(startPoint!.x + thePanner.translationInView(self).x,0)
-        if newX + internalCropRect!.size.width > self.bounds.width
+        if newX + internalCropRect!.size.width > imageRect!.size.width
         {
-          newX = self.bounds.width - internalCropRect!.size.width
+          newX = imageRect!.size.width - internalCropRect!.size.width
         }
         var newY = max(startPoint!.y + thePanner.translationInView(self).y,0)
-        if newY + internalCropRect!.size.height > self.bounds.height
+        if newY + internalCropRect!.size.height > imageRect!.size.height
         {
-          newY = self.bounds.height - internalCropRect!.size.height
+          newY = imageRect!.size.height - internalCropRect!.size.height
         }
         self.cropRect!.origin = CGPointMake(newX, newY)
 

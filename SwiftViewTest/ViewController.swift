@@ -7,13 +7,37 @@
 //
 
 import UIKit
+import AVFoundation
+
+func loadShutterSoundPlayer() -> AVAudioPlayer?
+{
+  let theMainBundle = NSBundle.mainBundle()
+  let filename = "Shutter sound"
+  let fileType = "mp3"
+  let soundfilePath: String? = theMainBundle.pathForResource(filename,
+    ofType: fileType)
+  if soundfilePath != nil
+  {
+    let fileURL = NSURL.fileURLWithPath(soundfilePath!)
+    return AVAudioPlayer.init(contentsOfURL: fileURL, error: nil)
+  }
+  else
+  {
+    return nil
+  }
+}
 
 class ViewController: UIViewController, CropVCProtocol
 {
 
   @IBOutlet weak var cropButton: UIButton!
   @IBOutlet weak var cropView: CroppableImageView!
-  override func viewDidLoad() {
+  
+  lazy var shutterSoundPlayer = loadShutterSoundPlayer()
+  
+
+
+override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
   }
@@ -26,20 +50,34 @@ class ViewController: UIViewController, CropVCProtocol
   @IBAction func handleCropButton(sender: UIButton)
   {
     println("crop button tapped")
-    let croppedImage: UIImage? = cropView.croppedImage()
-    let jpegData = UIImageJPEGRepresentation(croppedImage!, 0.9)
-    let documentsPath:String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
-      NSSearchPathDomainMask.UserDomainMask,
-    true).last as String
-    let filePath = documentsPath.stringByAppendingPathComponent("croppedImage.jpg")
-    if (jpegData.writeToFile(filePath, atomically: true))
+    if let croppedImage = cropView.croppedImage()
     {
-      println("Saved image to path \(filePath)")
+      //Save the cropped image to the user's photo album
+      
+      
+      UIImageWriteToSavedPhotosAlbum(croppedImage, nil, nil, nil);
+      
+      shutterSoundPlayer?.play()
+      
+      if false
+      {
+        let jpegData = UIImageJPEGRepresentation(croppedImage, 0.9)
+        let documentsPath:String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
+          NSSearchPathDomainMask.UserDomainMask,
+          true).last as String
+        let filename = "croppedImage.jpg"
+        var filePath = documentsPath.stringByAppendingPathComponent(filename)
+        if (jpegData.writeToFile(filePath, atomically: true))
+        {
+          println("Saved image to path \(filePath)")
+        }
+        else
+        {
+          println("Error saving file")
+        }
+      }
     }
-    else
-    {
-      println("Error saving file")
-    }
+
     
 //    croppedImage.write
   }
