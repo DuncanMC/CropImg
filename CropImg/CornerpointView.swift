@@ -63,26 +63,23 @@ class CornerpointView: UIView
     
     if drawCornerOutlines
     {
-    var shapeLayer = CAShapeLayer()
-    shapeLayer.frame = self.layer.bounds
-    shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
-    shapeLayer.strokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2).CGColor
-    shapeLayer.lineWidth = 3.0;
-    shapeLayer.fillColor = UIColor.clearColor().CGColor
-    self.layer.addSublayer(shapeLayer)
-    
-    shapeLayer = CAShapeLayer()
-    shapeLayer.frame = self.layer.bounds
-    shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
-    shapeLayer.strokeColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor
-    shapeLayer.lineWidth = 1;
-    shapeLayer.fillColor = UIColor.clearColor().CGColor
-    self.layer.addSublayer(shapeLayer)
+      var shapeLayer = CAShapeLayer()
+      shapeLayer.frame = self.layer.bounds
+      shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
+      shapeLayer.strokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2).CGColor
+      shapeLayer.lineWidth = 3.0;
+      shapeLayer.fillColor = UIColor.clearColor().CGColor
+      self.layer.addSublayer(shapeLayer)
+      
+      shapeLayer = CAShapeLayer()
+      shapeLayer.frame = self.layer.bounds
+      shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
+      shapeLayer.strokeColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor
+      shapeLayer.lineWidth = 1;
+      shapeLayer.fillColor = UIColor.clearColor().CGColor
+      self.layer.addSublayer(shapeLayer)
     }
-    self.layer.addSublayer(newLayer)
-//    self.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).CGColor
-//    self.layer.borderWidth = 1.0
-    
+    self.layer.addSublayer(newLayer)    
     
   }
   

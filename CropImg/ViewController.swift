@@ -26,7 +26,7 @@ func loadShutterSoundPlayer() -> AVAudioPlayer?
   //println("soundfilePath = \(soundfilePath)")
   let fileURL = NSURL.fileURLWithPath(soundfilePath!)
   var error: NSError?
-  let result: AVAudioPlayer? = AVAudioPlayer.init(contentsOfURL: fileURL, error: &error)
+  let result: AVAudioPlayer? = AVAudioPlayer(contentsOfURL: fileURL, error: &error)
   if let requiredErr = error
   {
     println("AVAudioPlayer.init failed with error \(requiredErr.debugDescription)")
@@ -142,7 +142,7 @@ override func viewDidLoad()
   {
     let deviceHasCamera: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     println("In \(__FUNCTION__)")
-    let anActionSheet = UIAlertController.init(title: "Pick image source",
+    let anActionSheet = UIAlertController(title: "Pick image source",
       message: nil,
       preferredStyle: UIAlertControllerStyle.ActionSheet)
     
