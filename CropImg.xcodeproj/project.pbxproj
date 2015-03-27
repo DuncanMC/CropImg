@@ -34,14 +34,14 @@
 
 /* Begin PBXFileReference section */
 		AE60CF841AC44F160031B8F5 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		AE788CCE1AC1B60200A32E20 /* SwiftViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE788CCE1AC1B60200A32E20 /* CropImg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CropImg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE788CD21AC1B60200A32E20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE788CD31AC1B60200A32E20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE788CD51AC1B60200A32E20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AE788CD81AC1B60200A32E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE788CDA1AC1B60200A32E20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AE788CDD1AC1B60200A32E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		AE788CE31AC1B60200A32E20 /* SwiftViewTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftViewTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE788CE31AC1B60200A32E20 /* CropImgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CropImgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE788CE81AC1B60200A32E20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE788CE91AC1B60200A32E20 /* SwiftViewTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftViewTestTests.swift; sourceTree = "<group>"; };
 		AE788CF31AC1B68500A32E20 /* CroppableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CroppableImageView.swift; sourceTree = "<group>"; };
@@ -74,7 +74,6 @@
 		AE788CC51AC1B60200A32E20 = {
 			isa = PBXGroup;
 			children = (
-				AE98DA711AC30F0A008E7DFE /* AVFoundation.framework */,
 				AE788CD01AC1B60200A32E20 /* SwiftViewTest */,
 				AE788CE61AC1B60200A32E20 /* SwiftViewTestTests */,
 				AE788CCF1AC1B60200A32E20 /* Products */,
@@ -84,8 +83,8 @@
 		AE788CCF1AC1B60200A32E20 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AE788CCE1AC1B60200A32E20 /* SwiftViewTest.app */,
-				AE788CE31AC1B60200A32E20 /* SwiftViewTestTests.xctest */,
+				AE788CCE1AC1B60200A32E20 /* CropImg.app */,
+				AE788CE31AC1B60200A32E20 /* CropImgTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +110,7 @@
 		AE788CD11AC1B60200A32E20 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AE98DA711AC30F0A008E7DFE /* AVFoundation.framework */,
 				AE98DA6F1AC30E68008E7DFE /* Shutter sound.mp3 */,
 				AE788CD21AC1B60200A32E20 /* Info.plist */,
 			);
@@ -137,9 +137,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE788CCD1AC1B60200A32E20 /* SwiftViewTest */ = {
+		AE788CCD1AC1B60200A32E20 /* CropImg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE788CED1AC1B60200A32E20 /* Build configuration list for PBXNativeTarget "SwiftViewTest" */;
+			buildConfigurationList = AE788CED1AC1B60200A32E20 /* Build configuration list for PBXNativeTarget "CropImg" */;
 			buildPhases = (
 				AE788CCA1AC1B60200A32E20 /* Sources */,
 				AE788CCB1AC1B60200A32E20 /* Frameworks */,
@@ -149,14 +149,14 @@
 			);
 			dependencies = (
 			);
-			name = SwiftViewTest;
+			name = CropImg;
 			productName = SwiftViewTest;
-			productReference = AE788CCE1AC1B60200A32E20 /* SwiftViewTest.app */;
+			productReference = AE788CCE1AC1B60200A32E20 /* CropImg.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AE788CE21AC1B60200A32E20 /* SwiftViewTestTests */ = {
+		AE788CE21AC1B60200A32E20 /* CropImgTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE788CF01AC1B60200A32E20 /* Build configuration list for PBXNativeTarget "SwiftViewTestTests" */;
+			buildConfigurationList = AE788CF01AC1B60200A32E20 /* Build configuration list for PBXNativeTarget "CropImgTests" */;
 			buildPhases = (
 				AE788CDF1AC1B60200A32E20 /* Sources */,
 				AE788CE01AC1B60200A32E20 /* Frameworks */,
@@ -167,9 +167,9 @@
 			dependencies = (
 				AE788CE51AC1B60200A32E20 /* PBXTargetDependency */,
 			);
-			name = SwiftViewTestTests;
+			name = CropImgTests;
 			productName = SwiftViewTestTests;
-			productReference = AE788CE31AC1B60200A32E20 /* SwiftViewTestTests.xctest */;
+			productReference = AE788CE31AC1B60200A32E20 /* CropImgTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -191,7 +191,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AE788CC91AC1B60200A32E20 /* Build configuration list for PBXProject "SwiftViewTest" */;
+			buildConfigurationList = AE788CC91AC1B60200A32E20 /* Build configuration list for PBXProject "CropImg" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -204,8 +204,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE788CCD1AC1B60200A32E20 /* SwiftViewTest */,
-				AE788CE21AC1B60200A32E20 /* SwiftViewTestTests */,
+				AE788CCD1AC1B60200A32E20 /* CropImg */,
+				AE788CE21AC1B60200A32E20 /* CropImgTests */,
 			);
 		};
 /* End PBXProject section */
@@ -259,7 +259,7 @@
 /* Begin PBXTargetDependency section */
 		AE788CE51AC1B60200A32E20 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AE788CCD1AC1B60200A32E20 /* SwiftViewTest */;
+			target = AE788CCD1AC1B60200A32E20 /* CropImg */;
 			targetProxy = AE788CE41AC1B60200A32E20 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -371,7 +371,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SwiftViewTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CropImg;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -385,7 +385,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SwiftViewTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CropImg;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -405,8 +405,8 @@
 				);
 				INFOPLIST_FILE = SwiftViewTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftViewTest.app/SwiftViewTest";
+				PRODUCT_NAME = CropImgTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CropImg.app/CropImg";
 			};
 			name = Debug;
 		};
@@ -420,15 +420,15 @@
 				);
 				INFOPLIST_FILE = SwiftViewTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftViewTest.app/SwiftViewTest";
+				PRODUCT_NAME = CropImgTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CropImg.app/CropImg";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE788CC91AC1B60200A32E20 /* Build configuration list for PBXProject "SwiftViewTest" */ = {
+		AE788CC91AC1B60200A32E20 /* Build configuration list for PBXProject "CropImg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE788CEB1AC1B60200A32E20 /* Debug */,
@@ -437,7 +437,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE788CED1AC1B60200A32E20 /* Build configuration list for PBXNativeTarget "SwiftViewTest" */ = {
+		AE788CED1AC1B60200A32E20 /* Build configuration list for PBXNativeTarget "CropImg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE788CEE1AC1B60200A32E20 /* Debug */,
@@ -446,7 +446,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE788CF01AC1B60200A32E20 /* Build configuration list for PBXNativeTarget "SwiftViewTestTests" */ = {
+		AE788CF01AC1B60200A32E20 /* Build configuration list for PBXNativeTarget "CropImgTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE788CF11AC1B60200A32E20 /* Debug */,
