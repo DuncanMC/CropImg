@@ -140,11 +140,12 @@ override func viewDidLoad()
 
   @IBAction func handleSelectImgButton(sender: UIButton)
   {
+    let deviceHasCamera: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     println("In \(__FUNCTION__)")
     let anActionSheet = UIAlertController.init(title: "Pick image source",
       message: nil,
       preferredStyle: UIAlertControllerStyle.ActionSheet)
-
+    
     let sampleAction = UIAlertAction(
       title:"Load Sample Image",
       style: UIAlertActionStyle.Default,
@@ -153,32 +154,35 @@ override func viewDidLoad()
         (alert: UIAlertAction!)  in
         self.cropView.imageToCrop = UIImage(named: "Scampers 6685")
       }
-      )
-
-    let takePicAction = UIAlertAction(
-      title:"Take New Picture",
-      style: UIAlertActionStyle.Default,
-      handler:
-      {
-        (alert: UIAlertAction!)  in
-        self.pickImageFromSource(
-          ImageSource.Camera,
-          fromButton: sender)
-    }
-  )
-
-      let selectPicAction = UIAlertAction(
-        title:"Select Picture from library",
+    )
+    var takePicAction: UIAlertAction? = nil
+    if deviceHasCamera
+    {
+      takePicAction = UIAlertAction(
+        title:"Take New Picture",
         style: UIAlertActionStyle.Default,
         handler:
         {
           (alert: UIAlertAction!)  in
           self.pickImageFromSource(
-            ImageSource.PhotoLibrary,
+            ImageSource.Camera,
             fromButton: sender)
         }
-        )
-
+      )
+    }
+    
+    let selectPicAction = UIAlertAction(
+      title:"Select Picture from library",
+      style: UIAlertActionStyle.Default,
+      handler:
+      {
+        (alert: UIAlertAction!)  in
+        self.pickImageFromSource(
+          ImageSource.PhotoLibrary,
+          fromButton: sender)
+      }
+    )
+    
     let cancelAction = UIAlertAction(
       title:"Cancel",
       style: UIAlertActionStyle.Cancel,
@@ -189,7 +193,11 @@ override func viewDidLoad()
       }
     )
     anActionSheet.addAction(sampleAction)
-    anActionSheet.addAction(takePicAction)
+    
+    if let requiredtakePicAction = takePicAction
+    {
+      anActionSheet.addAction(requiredtakePicAction)
+    }
     anActionSheet.addAction(selectPicAction)
     anActionSheet.addAction(cancelAction)
     
