@@ -28,7 +28,14 @@ class CroppableImageView: UIView, CornerpointClientProtocol
 {
 
   // MARK: - properties -
-  var  myImage: UIImage?
+  var  imageToCrop: UIImage?
+    {
+    didSet
+    {
+      imageSize = imageToCrop?.size
+      self.setNeedsLayout()
+    }
+  }
   let viewForImage: UIView
   var  imageSize: CGSize?
   var  imageRect: CGRect?
@@ -94,8 +101,6 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     }
     viewForImage = UIView(frame: CGRectZero)
     viewForImage.setTranslatesAutoresizingMaskIntoConstraints(false)
-    myImage = UIImage(named: "Curtains 2495")
-    imageSize = myImage?.size
     aspect = 1
     
     super.init(coder: aDecoder)
@@ -166,6 +171,9 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       constant: 0)
     self.superview!.addConstraint(aConstraint)
     cropRect = nil;
+    
+    imageToCrop = UIImage(named: "Scampers 6685")
+
   }
   
   override func layoutSubviews()
@@ -188,7 +196,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       imageRect = CGRectMake(0, 0, displaySize.width, displaySize.height)
     }
     
-    if myImage != nil
+    if imageToCrop != nil
     {
       //Drawing the image every time in drawRect is too slow. Instead, create a 
       //snapshot of the image and install it as the content of the viewForImage's layer
@@ -198,7 +206,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       UIColor.whiteColor().setFill()
       path.fill()
 
-      myImage?.drawInRect(imageRect!)
+      imageToCrop?.drawInRect(imageRect!)
       var result = UIGraphicsGetImageFromCurrentImageContext()
       
       UIGraphicsEndImageContext();
@@ -246,7 +254,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       cropRect.origin.y = round(cropRect.origin.y)
       
       UIGraphicsBeginImageContextWithOptions(cropRect.size, true, 1)
-      myImage?.drawInRect(drawRect)
+      imageToCrop?.drawInRect(drawRect)
       var result = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext();
       
@@ -268,13 +276,16 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     case UIGestureRecognizerState.Began:
       
       //if we have a crop rect and the touch is inside it, drag the entire rect.
-      if internalCropRect != nil && CGRectContainsPoint(internalCropRect!, newPoint)
+      if let requiredCropRect = internalCropRect
       {
-        startPoint = internalCropRect!.origin
-        draggingRect = true;
-        thePanner.setTranslation(CGPointZero, inView: self)
+        if CGRectContainsPoint(requiredCropRect, newPoint)
+        {
+          startPoint = requiredCropRect.origin
+          draggingRect = true;
+          thePanner.setTranslation(CGPointZero, inView: self)
+        }
       }
-      else
+      if !draggingRect
       {
         //Start definining a new cropRect
         startPoint = newPoint
@@ -306,20 +317,25 @@ class CroppableImageView: UIView, CornerpointClientProtocol
         self.cropRect = rectFromStartAndEnd(startPoint!, newPoint)
       }
     default:
+      draggingRect = false;
       break
     }
   }
 
+  //The user tapped outside of the crop rect. Cancel the current crop rect.
   func handleViewTap(theTapper: UITapGestureRecognizer)
   {
-    self.cropRect = nil
+    if CGRectContainsPoint(imageRect!, theTapper.locationInView(self))
+    {
+      self.cropRect = nil
+    }
   }
   
   //-------------------------------------------------------------------------------------------------------
   // MARK: - CornerpointClientProtocol methods
   //-------------------------------------------------------------------------------------------------------
+
   //This method is called when the user has dragged one of the corners of the crop rectangle
-  
   func cornerHasChanged(newCornerPoint: CornerpointView)
   {
     var pointIndex: Int?

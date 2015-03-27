@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE60CF851AC44F160031B8F5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE60CF841AC44F160031B8F5 /* Utils.swift */; };
 		AE788CD41AC1B60200A32E20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CD31AC1B60200A32E20 /* AppDelegate.swift */; };
 		AE788CD61AC1B60200A32E20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CD51AC1B60200A32E20 /* ViewController.swift */; };
 		AE788CD91AC1B60200A32E20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE788CD71AC1B60200A32E20 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE60CF841AC44F160031B8F5 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AE788CCE1AC1B60200A32E20 /* SwiftViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE788CD21AC1B60200A32E20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE788CD31AC1B60200A32E20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		AE788CD01AC1B60200A32E20 /* SwiftViewTest */ = {
 			isa = PBXGroup;
 			children = (
+				AE60CF841AC44F160031B8F5 /* Utils.swift */,
 				AE788CD31AC1B60200A32E20 /* AppDelegate.swift */,
 				AE788CD51AC1B60200A32E20 /* ViewController.swift */,
 				AECEA7111AC1FEB800EFCC0A /* CropVCProtocol.swift */,
@@ -236,6 +239,7 @@
 				AECEA7141AC204BF00EFCC0A /* CornerpointClientProtocol.swift in Sources */,
 				AE788CD61AC1B60200A32E20 /* ViewController.swift in Sources */,
 				AE788CF41AC1B68500A32E20 /* CroppableImageView.swift in Sources */,
+				AE60CF851AC44F160031B8F5 /* Utils.swift in Sources */,
 				AE788CF61AC1D48600A32E20 /* CornerpointView.swift in Sources */,
 				AE788CD41AC1B60200A32E20 /* AppDelegate.swift in Sources */,
 				AECEA7121AC1FEB800EFCC0A /* CropVCProtocol.swift in Sources */,
@@ -314,7 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -351,7 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -369,6 +373,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -382,6 +387,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
