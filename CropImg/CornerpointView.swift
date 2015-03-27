@@ -57,6 +57,10 @@ class CornerpointView: UIView
     newLayer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).CGColor
     newLayer.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5).CGColor
     
+    
+    //This code adds faint outlines around the draggable region of each corner so you can see it.
+    //I think it looks better NOT to draw an outline, but the outline does let you know where to drag.
+    
     if drawCornerOutlines
     {
     var shapeLayer = CAShapeLayer()
@@ -74,8 +78,8 @@ class CornerpointView: UIView
     shapeLayer.lineWidth = 1;
     shapeLayer.fillColor = UIColor.clearColor().CGColor
     self.layer.addSublayer(shapeLayer)
-    self.layer.addSublayer(newLayer)
     }
+    self.layer.addSublayer(newLayer)
 //    self.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).CGColor
 //    self.layer.borderWidth = 1.0
     
