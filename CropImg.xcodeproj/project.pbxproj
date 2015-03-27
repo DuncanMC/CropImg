@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AE60CF851AC44F160031B8F5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE60CF841AC44F160031B8F5 /* Utils.swift */; };
-		AE788CD41AC1B60200A32E20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CD31AC1B60200A32E20 /* AppDelegate.swift */; };
-		AE788CD61AC1B60200A32E20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CD51AC1B60200A32E20 /* ViewController.swift */; };
+		AE755FCD1AC5A85A00EFD3D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE755FC51AC5A85A00EFD3D4 /* Images.xcassets */; };
+		AE755FCE1AC5A85A00EFD3D4 /* CornerpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC61AC5A85A00EFD3D4 /* CornerpointView.swift */; };
+		AE755FCF1AC5A85A00EFD3D4 /* CropVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC71AC5A85A00EFD3D4 /* CropVCProtocol.swift */; };
+		AE755FD01AC5A85A00EFD3D4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC81AC5A85A00EFD3D4 /* Utils.swift */; };
+		AE755FD11AC5A85A00EFD3D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC91AC5A85A00EFD3D4 /* ViewController.swift */; };
+		AE755FD21AC5A85A00EFD3D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FCA1AC5A85A00EFD3D4 /* AppDelegate.swift */; };
+		AE755FD31AC5A85A00EFD3D4 /* CornerpointClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FCB1AC5A85A00EFD3D4 /* CornerpointClientProtocol.swift */; };
+		AE755FD41AC5A85A00EFD3D4 /* CroppableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FCC1AC5A85A00EFD3D4 /* CroppableImageView.swift */; };
+		AE755FD71AC5A8F300EFD3D4 /* Shutter sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE755FD51AC5A8F300EFD3D4 /* Shutter sound.mp3 */; };
+		AE755FDA1AC5AAD600EFD3D4 /* CropImgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FD91AC5AAD600EFD3D4 /* CropImgTests.swift */; };
 		AE788CD91AC1B60200A32E20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE788CD71AC1B60200A32E20 /* Main.storyboard */; };
-		AE788CDB1AC1B60200A32E20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE788CDA1AC1B60200A32E20 /* Images.xcassets */; };
 		AE788CDE1AC1B60200A32E20 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE788CDC1AC1B60200A32E20 /* LaunchScreen.xib */; };
-		AE788CEA1AC1B60200A32E20 /* SwiftViewTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CE91AC1B60200A32E20 /* SwiftViewTestTests.swift */; };
-		AE788CF41AC1B68500A32E20 /* CroppableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CF31AC1B68500A32E20 /* CroppableImageView.swift */; };
-		AE788CF61AC1D48600A32E20 /* CornerpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE788CF51AC1D48600A32E20 /* CornerpointView.swift */; };
-		AE98DA701AC30E68008E7DFE /* Shutter sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE98DA6F1AC30E68008E7DFE /* Shutter sound.mp3 */; };
 		AE98DA721AC30F0A008E7DFE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE98DA711AC30F0A008E7DFE /* AVFoundation.framework */; };
-		AECEA7121AC1FEB800EFCC0A /* CropVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEA7111AC1FEB800EFCC0A /* CropVCProtocol.swift */; };
-		AECEA7141AC204BF00EFCC0A /* CornerpointClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEA7131AC204BF00EFCC0A /* CornerpointClientProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,28 +28,28 @@
 			containerPortal = AE788CC61AC1B60200A32E20 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AE788CCD1AC1B60200A32E20;
-			remoteInfo = SwiftViewTest;
+			remoteInfo = CropImg;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AE60CF841AC44F160031B8F5 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		AE755FC51AC5A85A00EFD3D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CropImg/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		AE755FC61AC5A85A00EFD3D4 /* CornerpointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CornerpointView.swift; path = CropImg/CornerpointView.swift; sourceTree = SOURCE_ROOT; };
+		AE755FC71AC5A85A00EFD3D4 /* CropVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CropVCProtocol.swift; path = CropImg/CropVCProtocol.swift; sourceTree = SOURCE_ROOT; };
+		AE755FC81AC5A85A00EFD3D4 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = CropImg/Utils.swift; sourceTree = SOURCE_ROOT; };
+		AE755FC91AC5A85A00EFD3D4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = CropImg/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		AE755FCA1AC5A85A00EFD3D4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CropImg/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		AE755FCB1AC5A85A00EFD3D4 /* CornerpointClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CornerpointClientProtocol.swift; path = CropImg/CornerpointClientProtocol.swift; sourceTree = SOURCE_ROOT; };
+		AE755FCC1AC5A85A00EFD3D4 /* CroppableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CroppableImageView.swift; path = CropImg/CroppableImageView.swift; sourceTree = SOURCE_ROOT; };
+		AE755FD51AC5A8F300EFD3D4 /* Shutter sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Shutter sound.mp3"; path = "CropImg/Shutter sound.mp3"; sourceTree = SOURCE_ROOT; };
+		AE755FD61AC5A8F300EFD3D4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CropImg/Info.plist; sourceTree = SOURCE_ROOT; };
+		AE755FD91AC5AAD600EFD3D4 /* CropImgTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImgTests.swift; sourceTree = "<group>"; };
 		AE788CCE1AC1B60200A32E20 /* CropImg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CropImg.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE788CD21AC1B60200A32E20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE788CD31AC1B60200A32E20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AE788CD51AC1B60200A32E20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AE788CD81AC1B60200A32E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AE788CDA1AC1B60200A32E20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AE788CDD1AC1B60200A32E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AE788CE31AC1B60200A32E20 /* CropImgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CropImgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE788CE81AC1B60200A32E20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE788CE91AC1B60200A32E20 /* SwiftViewTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftViewTestTests.swift; sourceTree = "<group>"; };
-		AE788CF31AC1B68500A32E20 /* CroppableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CroppableImageView.swift; sourceTree = "<group>"; };
-		AE788CF51AC1D48600A32E20 /* CornerpointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerpointView.swift; sourceTree = "<group>"; };
-		AE98DA6F1AC30E68008E7DFE /* Shutter sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Shutter sound.mp3"; sourceTree = "<group>"; };
 		AE98DA711AC30F0A008E7DFE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		AECEA7111AC1FEB800EFCC0A /* CropVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropVCProtocol.swift; sourceTree = "<group>"; };
-		AECEA7131AC204BF00EFCC0A /* CornerpointClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerpointClientProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +74,8 @@
 		AE788CC51AC1B60200A32E20 = {
 			isa = PBXGroup;
 			children = (
-				AE788CD01AC1B60200A32E20 /* SwiftViewTest */,
-				AE788CE61AC1B60200A32E20 /* SwiftViewTestTests */,
+				AE788CD01AC1B60200A32E20 /* CropImg */,
+				AE788CE61AC1B60200A32E20 /* CropImgTests */,
 				AE788CCF1AC1B60200A32E20 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,41 +89,41 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AE788CD01AC1B60200A32E20 /* SwiftViewTest */ = {
+		AE788CD01AC1B60200A32E20 /* CropImg */ = {
 			isa = PBXGroup;
 			children = (
-				AE60CF841AC44F160031B8F5 /* Utils.swift */,
-				AE788CD31AC1B60200A32E20 /* AppDelegate.swift */,
-				AE788CD51AC1B60200A32E20 /* ViewController.swift */,
-				AECEA7111AC1FEB800EFCC0A /* CropVCProtocol.swift */,
-				AECEA7131AC204BF00EFCC0A /* CornerpointClientProtocol.swift */,
-				AE788CF31AC1B68500A32E20 /* CroppableImageView.swift */,
-				AE788CF51AC1D48600A32E20 /* CornerpointView.swift */,
+				AE755FC51AC5A85A00EFD3D4 /* Images.xcassets */,
+				AE755FC61AC5A85A00EFD3D4 /* CornerpointView.swift */,
+				AE755FC71AC5A85A00EFD3D4 /* CropVCProtocol.swift */,
+				AE755FC81AC5A85A00EFD3D4 /* Utils.swift */,
+				AE755FC91AC5A85A00EFD3D4 /* ViewController.swift */,
+				AE755FCA1AC5A85A00EFD3D4 /* AppDelegate.swift */,
+				AE755FCB1AC5A85A00EFD3D4 /* CornerpointClientProtocol.swift */,
+				AE755FCC1AC5A85A00EFD3D4 /* CroppableImageView.swift */,
 				AE788CD71AC1B60200A32E20 /* Main.storyboard */,
-				AE788CDA1AC1B60200A32E20 /* Images.xcassets */,
 				AE788CDC1AC1B60200A32E20 /* LaunchScreen.xib */,
 				AE788CD11AC1B60200A32E20 /* Supporting Files */,
 			);
-			path = SwiftViewTest;
+			path = CropImg;
 			sourceTree = "<group>";
 		};
 		AE788CD11AC1B60200A32E20 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AE755FD51AC5A8F300EFD3D4 /* Shutter sound.mp3 */,
+				AE755FD61AC5A8F300EFD3D4 /* Info.plist */,
 				AE98DA711AC30F0A008E7DFE /* AVFoundation.framework */,
-				AE98DA6F1AC30E68008E7DFE /* Shutter sound.mp3 */,
-				AE788CD21AC1B60200A32E20 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AE788CE61AC1B60200A32E20 /* SwiftViewTestTests */ = {
+		AE788CE61AC1B60200A32E20 /* CropImgTests */ = {
 			isa = PBXGroup;
 			children = (
-				AE788CE91AC1B60200A32E20 /* SwiftViewTestTests.swift */,
+				AE755FD91AC5AAD600EFD3D4 /* CropImgTests.swift */,
 				AE788CE71AC1B60200A32E20 /* Supporting Files */,
 			);
-			path = SwiftViewTestTests;
+			path = CropImgTests;
 			sourceTree = "<group>";
 		};
 		AE788CE71AC1B60200A32E20 /* Supporting Files */ = {
@@ -150,7 +150,7 @@
 			dependencies = (
 			);
 			name = CropImg;
-			productName = SwiftViewTest;
+			productName = CropImg;
 			productReference = AE788CCE1AC1B60200A32E20 /* CropImg.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -168,7 +168,7 @@
 				AE788CE51AC1B60200A32E20 /* PBXTargetDependency */,
 			);
 			name = CropImgTests;
-			productName = SwiftViewTestTests;
+			productName = CropImgTests;
 			productReference = AE788CE31AC1B60200A32E20 /* CropImgTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -216,9 +216,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE788CD91AC1B60200A32E20 /* Main.storyboard in Resources */,
+				AE755FCD1AC5A85A00EFD3D4 /* Images.xcassets in Resources */,
 				AE788CDE1AC1B60200A32E20 /* LaunchScreen.xib in Resources */,
-				AE788CDB1AC1B60200A32E20 /* Images.xcassets in Resources */,
-				AE98DA701AC30E68008E7DFE /* Shutter sound.mp3 in Resources */,
+				AE755FD71AC5A8F300EFD3D4 /* Shutter sound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,13 +236,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AECEA7141AC204BF00EFCC0A /* CornerpointClientProtocol.swift in Sources */,
-				AE788CD61AC1B60200A32E20 /* ViewController.swift in Sources */,
-				AE788CF41AC1B68500A32E20 /* CroppableImageView.swift in Sources */,
-				AE60CF851AC44F160031B8F5 /* Utils.swift in Sources */,
-				AE788CF61AC1D48600A32E20 /* CornerpointView.swift in Sources */,
-				AE788CD41AC1B60200A32E20 /* AppDelegate.swift in Sources */,
-				AECEA7121AC1FEB800EFCC0A /* CropVCProtocol.swift in Sources */,
+				AE755FD21AC5A85A00EFD3D4 /* AppDelegate.swift in Sources */,
+				AE755FD41AC5A85A00EFD3D4 /* CroppableImageView.swift in Sources */,
+				AE755FD11AC5A85A00EFD3D4 /* ViewController.swift in Sources */,
+				AE755FCF1AC5A85A00EFD3D4 /* CropVCProtocol.swift in Sources */,
+				AE755FD01AC5A85A00EFD3D4 /* Utils.swift in Sources */,
+				AE755FD31AC5A85A00EFD3D4 /* CornerpointClientProtocol.swift in Sources */,
+				AE755FCE1AC5A85A00EFD3D4 /* CornerpointView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE788CEA1AC1B60200A32E20 /* SwiftViewTestTests.swift in Sources */,
+				AE755FDA1AC5AAD600EFD3D4 /* CropImgTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +369,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = SwiftViewTest/Info.plist;
+				INFOPLIST_FILE = CropImg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = CropImg;
 				PROVISIONING_PROFILE = "";
@@ -382,8 +382,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = SwiftViewTest/Info.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				INFOPLIST_FILE = CropImg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = CropImg;
 				PROVISIONING_PROFILE = "";
@@ -395,6 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -403,9 +404,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SwiftViewTestTests/Info.plist;
+				INFOPLIST_FILE = CropImgTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = CropImgTests;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CropImg.app/CropImg";
 			};
 			name = Debug;
@@ -414,11 +416,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SwiftViewTestTests/Info.plist;
+				INFOPLIST_FILE = CropImgTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = CropImgTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CropImg.app/CropImg";
