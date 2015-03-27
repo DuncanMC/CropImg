@@ -10,6 +10,7 @@ import UIKit
 
 class CornerpointView: UIView
 {
+  var drawCornerOutlines = false
   var  cornerpointDelegate: CornerpointClientProtocol?
   let dragger: UIPanGestureRecognizer!
   var dragStart: CGPoint!
@@ -56,6 +57,8 @@ class CornerpointView: UIView
     newLayer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).CGColor
     newLayer.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5).CGColor
     
+    if drawCornerOutlines
+    {
     var shapeLayer = CAShapeLayer()
     shapeLayer.frame = self.layer.bounds
     shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
@@ -72,6 +75,7 @@ class CornerpointView: UIView
     shapeLayer.fillColor = UIColor.clearColor().CGColor
     self.layer.addSublayer(shapeLayer)
     self.layer.addSublayer(newLayer)
+    }
 //    self.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).CGColor
 //    self.layer.borderWidth = 1.0
     
