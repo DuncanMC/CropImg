@@ -33,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AE428BFD1AD2BC18006FF5B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AE701C871AD2DCF2003A02F7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		AE755FC51AC5A85A00EFD3D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CropImg/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		AE755FC61AC5A85A00EFD3D4 /* CornerpointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CornerpointView.swift; path = CropImg/CornerpointView.swift; sourceTree = SOURCE_ROOT; };
 		AE755FC71AC5A85A00EFD3D4 /* CroppableImageViewDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CroppableImageViewDelegateProtocol.swift; path = CropImg/CroppableImageViewDelegateProtocol.swift; sourceTree = SOURCE_ROOT; };
@@ -111,7 +111,7 @@
 		AE788CD11AC1B60200A32E20 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AE428BFD1AD2BC18006FF5B7 /* README.md */,
+				AE701C871AD2DCF2003A02F7 /* README.md */,
 				AE755FD51AC5A8F300EFD3D4 /* Shutter sound.mp3 */,
 				AE755FD61AC5A8F300EFD3D4 /* Info.plist */,
 				AE98DA711AC30F0A008E7DFE /* AVFoundation.framework */,
