@@ -26,7 +26,6 @@ func rectFromStartAndEnd(var startPoint:CGPoint, endPoint: CGPoint) -> CGRect
 //----------------------------------------------------------------------------------------------------------
 class CroppableImageView: UIView, CornerpointClientProtocol
 {
-
   // MARK: - properties -
   var  imageToCrop: UIImage?
     {
@@ -36,14 +35,15 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       self.setNeedsLayout()
     }
   }
+
   let viewForImage: UIView
   var  imageSize: CGSize?
   var  imageRect: CGRect?
   var aspect: CGFloat
   var draggingRect: Bool = false
 
-  @IBOutlet var  cropDelegate: CropVCProtocol?
-  let dragger: UIPanGestureRecognizer!
+  @IBOutlet var  cropDelegate: CroppableImageViewDelegateProtocol?
+  let dragger: UIPanGestureRecognizer
   var cornerpoints =  [CornerpointView]()
   
 
@@ -70,12 +70,12 @@ class CroppableImageView: UIView, CornerpointClientProtocol
           aCornerpoint.centerPoint = nil;
         }
       }
-      if cropDelegate != nil
+      if let cropDelegate = cropDelegate
       {
         let rectIsTooSmall: Bool = internalCropRect == nil ||
           internalCropRect!.size.width < 5 ||
           internalCropRect!.size.height < 5
-        cropDelegate!.haveValidCropRect(internalCropRect != nil && !rectIsTooSmall)
+        cropDelegate.haveValidCropRect(internalCropRect != nil && !rectIsTooSmall)
       }
       
       
@@ -103,9 +103,10 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     viewForImage.setTranslatesAutoresizingMaskIntoConstraints(false)
     aspect = 1
     
+    dragger = UIPanGestureRecognizer()
     super.init(coder: aDecoder)
+    dragger.addTarget(self as AnyObject, action: "handleDragInView:")
     viewForImage.frame = self.frame;
-    dragger = UIPanGestureRecognizer(target: self as AnyObject, action: "handleDragInView:")
     self.addGestureRecognizer(dragger)
 
     let tapper = UITapGestureRecognizer(target: self as AnyObject,
@@ -239,7 +240,10 @@ class CroppableImageView: UIView, CornerpointClientProtocol
 //---------------------------------------------------------------------------------------------------------
 // MARK: - custom instance methods -
 //---------------------------------------------------------------------------------------------------------
-
+/* 
+  Call this method to create new image from the cropped portion of the current image view. It returns nil
+  if there is not a valid crop rectangle active.
+*/
   func croppedImage() -> UIImage?
   {
     if var cropRect = internalCropRect

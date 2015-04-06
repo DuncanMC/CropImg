@@ -4,16 +4,18 @@
 //
 //  Created by Duncan Champney on 3/24/15.
 //  Copyright (c) 2015 Duncan Champney. All rights reserved.
-//
+//  This class is used to draw the corner points of the user's crop rectangle.
 
 import UIKit
 
 class CornerpointView: UIView
 {
   var drawCornerOutlines = false
-  var  cornerpointDelegate: CornerpointClientProtocol?
-  let dragger: UIPanGestureRecognizer!
+  var cornerpointDelegate: CornerpointClientProtocol?
+  var dragger: UIPanGestureRecognizer!
   var dragStart: CGPoint!
+  
+  //the centerPoint property is an optional. Set it to nil to hide this corner point.
   var centerPoint: CGPoint?
     {
     didSet(oldPoint)
@@ -31,25 +33,29 @@ class CornerpointView: UIView
     }
   }
   
-  override init()
+  init()
   {
     super.init(frame:CGRectZero)
-    dragger = UIPanGestureRecognizer(target: self as AnyObject, action: "handleCornerDrag:")
-    self.addGestureRecognizer(dragger)
-   self.doSetup()
+    self.doSetup()
   }
 
   required init(coder aDecoder: NSCoder)
   {
     super.init(coder: aDecoder)
-    dragger = UIPanGestureRecognizer(target: self as AnyObject, action: "handleCornerDrag:")
-    self.addGestureRecognizer(dragger)
     self.doSetup()
   }
   
+  //-------------------------------------------------------------------------------------------------------
+  
   func doSetup()
   {
+    dragger = UIPanGestureRecognizer(target: self as AnyObject, action: "handleCornerDrag:")
+    self.addGestureRecognizer(dragger)
+
+    //Make the corner point view big enough to drag with a finger.
     self.bounds.size = CGSizeMake(30, 30)
+    
+    //Add a layer to the view to draw an outline for this corner point.
     var newLayer = CALayer()
     newLayer.position = CGPointMake(CGRectGetMidX(self.layer.bounds), CGRectGetMidY(self.layer.bounds))
     newLayer.bounds.size = CGSizeMake(7, 7)
@@ -60,9 +66,9 @@ class CornerpointView: UIView
     
     //This code adds faint outlines around the draggable region of each corner so you can see it.
     //I think it looks better NOT to draw an outline, but the outline does let you know where to drag.
-    
     if drawCornerOutlines
     {
+      //Create a faint white 3-point thick rectangle for the draggable area
       var shapeLayer = CAShapeLayer()
       shapeLayer.frame = self.layer.bounds
       shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
@@ -71,6 +77,7 @@ class CornerpointView: UIView
       shapeLayer.fillColor = UIColor.clearColor().CGColor
       self.layer.addSublayer(shapeLayer)
       
+      //Create a faint black 1 pixel rectangle to go on top  white rectangle
       shapeLayer = CAShapeLayer()
       shapeLayer.frame = self.layer.bounds
       shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
@@ -78,10 +85,13 @@ class CornerpointView: UIView
       shapeLayer.lineWidth = 1;
       shapeLayer.fillColor = UIColor.clearColor().CGColor
       self.layer.addSublayer(shapeLayer)
+      
     }
     self.layer.addSublayer(newLayer)    
     
   }
+  
+  //-------------------------------------------------------------------------------------------------------
   
   func handleCornerDrag(thePanner: UIPanGestureRecognizer)
   {
@@ -100,12 +110,16 @@ class CornerpointView: UIView
       //println("In view dragger changed at \(newPoint)")
       centerPoint = CGPointMake(dragStart.x + thePanner.translationInView(self).x,
         dragStart.y + thePanner.translationInView(self).y)
+      
+      //If we have a delegate, notify it that this corner has moved.
+      //This code uses "optional binding" to convert the optional "cornerpointDelegate" to a required 
+      //variable "theDelegate". If cornerpointDelegate == nil, the code that follows is skipped.
       if let theDelegate = cornerpointDelegate
       {
         theDelegate.cornerHasChanged(self)
       }
     default:
-      print("")
+      break;
     }
   }
 }

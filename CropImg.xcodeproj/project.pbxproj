@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AE755FCD1AC5A85A00EFD3D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE755FC51AC5A85A00EFD3D4 /* Images.xcassets */; };
 		AE755FCE1AC5A85A00EFD3D4 /* CornerpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC61AC5A85A00EFD3D4 /* CornerpointView.swift */; };
-		AE755FCF1AC5A85A00EFD3D4 /* CropVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC71AC5A85A00EFD3D4 /* CropVCProtocol.swift */; };
+		AE755FCF1AC5A85A00EFD3D4 /* CroppableImageViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC71AC5A85A00EFD3D4 /* CroppableImageViewDelegateProtocol.swift */; };
 		AE755FD01AC5A85A00EFD3D4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC81AC5A85A00EFD3D4 /* Utils.swift */; };
 		AE755FD11AC5A85A00EFD3D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FC91AC5A85A00EFD3D4 /* ViewController.swift */; };
 		AE755FD21AC5A85A00EFD3D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE755FCA1AC5A85A00EFD3D4 /* AppDelegate.swift */; };
@@ -33,9 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE428BFD1AD2BC18006FF5B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AE755FC51AC5A85A00EFD3D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CropImg/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		AE755FC61AC5A85A00EFD3D4 /* CornerpointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CornerpointView.swift; path = CropImg/CornerpointView.swift; sourceTree = SOURCE_ROOT; };
-		AE755FC71AC5A85A00EFD3D4 /* CropVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CropVCProtocol.swift; path = CropImg/CropVCProtocol.swift; sourceTree = SOURCE_ROOT; };
+		AE755FC71AC5A85A00EFD3D4 /* CroppableImageViewDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CroppableImageViewDelegateProtocol.swift; path = CropImg/CroppableImageViewDelegateProtocol.swift; sourceTree = SOURCE_ROOT; };
 		AE755FC81AC5A85A00EFD3D4 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = CropImg/Utils.swift; sourceTree = SOURCE_ROOT; };
 		AE755FC91AC5A85A00EFD3D4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = CropImg/ViewController.swift; sourceTree = SOURCE_ROOT; };
 		AE755FCA1AC5A85A00EFD3D4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CropImg/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -93,12 +94,12 @@
 			isa = PBXGroup;
 			children = (
 				AE755FC51AC5A85A00EFD3D4 /* Images.xcassets */,
+				AE755FCB1AC5A85A00EFD3D4 /* CornerpointClientProtocol.swift */,
+				AE755FC71AC5A85A00EFD3D4 /* CroppableImageViewDelegateProtocol.swift */,
 				AE755FC61AC5A85A00EFD3D4 /* CornerpointView.swift */,
-				AE755FC71AC5A85A00EFD3D4 /* CropVCProtocol.swift */,
 				AE755FC81AC5A85A00EFD3D4 /* Utils.swift */,
 				AE755FC91AC5A85A00EFD3D4 /* ViewController.swift */,
 				AE755FCA1AC5A85A00EFD3D4 /* AppDelegate.swift */,
-				AE755FCB1AC5A85A00EFD3D4 /* CornerpointClientProtocol.swift */,
 				AE755FCC1AC5A85A00EFD3D4 /* CroppableImageView.swift */,
 				AE788CD71AC1B60200A32E20 /* Main.storyboard */,
 				AE788CDC1AC1B60200A32E20 /* LaunchScreen.xib */,
@@ -110,6 +111,7 @@
 		AE788CD11AC1B60200A32E20 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AE428BFD1AD2BC18006FF5B7 /* README.md */,
 				AE755FD51AC5A8F300EFD3D4 /* Shutter sound.mp3 */,
 				AE755FD61AC5A8F300EFD3D4 /* Info.plist */,
 				AE98DA711AC30F0A008E7DFE /* AVFoundation.framework */,
@@ -239,7 +241,7 @@
 				AE755FD21AC5A85A00EFD3D4 /* AppDelegate.swift in Sources */,
 				AE755FD41AC5A85A00EFD3D4 /* CroppableImageView.swift in Sources */,
 				AE755FD11AC5A85A00EFD3D4 /* ViewController.swift in Sources */,
-				AE755FCF1AC5A85A00EFD3D4 /* CropVCProtocol.swift in Sources */,
+				AE755FCF1AC5A85A00EFD3D4 /* CroppableImageViewDelegateProtocol.swift in Sources */,
 				AE755FD01AC5A85A00EFD3D4 /* Utils.swift in Sources */,
 				AE755FD31AC5A85A00EFD3D4 /* CornerpointClientProtocol.swift in Sources */,
 				AE755FCE1AC5A85A00EFD3D4 /* CornerpointView.swift in Sources */,
@@ -318,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -355,7 +357,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -370,6 +372,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CropImg/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = CropImg;
 				PROVISIONING_PROFILE = "";
@@ -384,6 +387,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CropImg/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = CropImg;
 				PROVISIONING_PROFILE = "";

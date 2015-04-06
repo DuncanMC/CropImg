@@ -41,8 +41,9 @@ func loadShutterSoundPlayer() -> AVAudioPlayer?
 
 //-------------------------------------------------------------------------------------------------------
 
-class ViewController: UIViewController,
-  CropVCProtocol,
+class ViewController:
+  UIViewController,
+  CroppableImageViewDelegateProtocol,
   UIImagePickerControllerDelegate,
   UINavigationControllerDelegate,
   UIPopoverControllerDelegate
@@ -84,9 +85,7 @@ override func viewDidLoad()
       imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.Front;
     case .PhotoLibrary:
       println("User chose select pic button")
-//      imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
       imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
-      //PhotoLibrary
     }
     if UIDevice.currentDevice().userInterfaceIdiom == .Pad
     {
@@ -96,7 +95,7 @@ override func viewDidLoad()
         imagePicker,
         animated: true)
         {
-        println("In image picker completion block")
+          //println("In image picker completion block")
         }
       }
       else
@@ -105,7 +104,7 @@ override func viewDidLoad()
           imagePicker,
           animated: true)
           {
-            println("In image picker completion block")
+            //println("In image picker completion block")
         }
 //        //Import from library on iPad
 //        let pickPhotoPopover = UIPopoverController.init(contentViewController: imagePicker)
@@ -140,12 +139,20 @@ override func viewDidLoad()
 
   @IBAction func handleSelectImgButton(sender: UIButton)
   {
+    /*See if the current device has a camera. (I don't think any device that runs iOS 8 lacks a camera,
+    But the simulator doesn't offer a camera, so this prevents the
+    "Take a new picture" button from crashing the simulator.
+    */
     let deviceHasCamera: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     println("In \(__FUNCTION__)")
-    let anActionSheet = UIAlertController(title: "Pick image source",
+    
+    //Create an alert controller that asks the user what type of image to choose.
+    let anActionSheet = UIAlertController(title: "Pick Image Source",
       message: nil,
       preferredStyle: UIAlertControllerStyle.ActionSheet)
     
+    
+    //Offer the option to re-load the starting sample image
     let sampleAction = UIAlertAction(
       title:"Load Sample Image",
       style: UIAlertActionStyle.Default,
@@ -155,11 +162,13 @@ override func viewDidLoad()
         self.cropView.imageToCrop = UIImage(named: "Scampers 6685")
       }
     )
+    
+    //If the current device has a camera, add a "Take a New Picture" button
     var takePicAction: UIAlertAction? = nil
     if deviceHasCamera
     {
       takePicAction = UIAlertAction(
-        title:"Take New Picture",
+        title: "Take a New Picture",
         style: UIAlertActionStyle.Default,
         handler:
         {
@@ -171,6 +180,7 @@ override func viewDidLoad()
       )
     }
     
+    //Allow the user to selecxt an amage from their photo library
     let selectPicAction = UIAlertAction(
       title:"Select Picture from library",
       style: UIAlertActionStyle.Default,
@@ -250,7 +260,7 @@ override func viewDidLoad()
   }
 
   //-------------------------------------------------------------------------------------------------------
-  // MARK: - CropVCProtocol methods -
+  // MARK: - CroppableImageViewDelegateProtocol methods -
   //-------------------------------------------------------------------------------------------------------
 
   func haveValidCropRect(haveValidCropRect:Bool)
@@ -263,13 +273,15 @@ override func viewDidLoad()
   //-------------------------------------------------------------------------------------------------------
   
   func imagePickerController(
-    picker: UIImagePickerController!,
-    didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!)
+    picker: UIImagePickerController,
+    didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
   {
     println("In \(__FUNCTION__)")
-    let image = info[UIImagePickerControllerOriginalImage] as UIImage
-    picker.dismissViewControllerAnimated(true, completion: nil)
-    cropView.imageToCrop = image
+    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    {
+      picker.dismissViewControllerAnimated(true, completion: nil)
+      cropView.imageToCrop = image
+    }
     //cropView.setNeedsLayout()
   }
   
