@@ -25,18 +25,16 @@ func loadShutterSoundPlayer() -> AVAudioPlayer?
   }
   //println("soundfilePath = \(soundfilePath)")
   let fileURL = NSURL.fileURLWithPath(soundfilePath!)
-  var error: NSError?
-  let result: AVAudioPlayer? = AVAudioPlayer(contentsOfURL: fileURL, error: &error)
-  if let requiredErr = error
-  {
-    println("AVAudioPlayer.init failed with error \(requiredErr.debugDescription)")
-  }
-  if let settings = result!.settings
-  {
-    //println("soundplayer.settings = \(settings)")
-  }
-  result?.prepareToPlay()
-  return result
+    do {
+        let result: AVAudioPlayer? = try AVAudioPlayer(contentsOfURL: fileURL)
+        result?.prepareToPlay()
+        return result
+    } catch {
+        print("AVAudioPlayer.init failed with error \(error)")
+        return nil
+    }
+
+
 }
 
 //-------------------------------------------------------------------------------------------------------
@@ -80,11 +78,11 @@ override func viewDidLoad()
     switch theImageSource
     {
     case .Camera:
-      println("User chose take new pic button")
+      print("User chose take new pic button")
       imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
       imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.Front;
     case .PhotoLibrary:
-      println("User chose select pic button")
+      print("User chose select pic button")
       imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
     }
     if UIDevice.currentDevice().userInterfaceIdiom == .Pad
@@ -127,7 +125,7 @@ override func viewDidLoad()
         imagePicker,
         animated: true)
         {
-          println("In image picker completion block")
+          print("In image picker completion block")
       }
       
     }
@@ -144,7 +142,7 @@ override func viewDidLoad()
     "Take a new picture" button from crashing the simulator.
     */
     let deviceHasCamera: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-    println("In \(__FUNCTION__)")
+    print("In \(__FUNCTION__)")
     
     //Create an alert controller that asks the user what type of image to choose.
     let anActionSheet = UIAlertController(title: "Pick Image Source",
@@ -199,7 +197,7 @@ override func viewDidLoad()
       handler:
       {
         (alert: UIAlertAction!)  in
-        println("User chose cancel button")
+        print("User chose cancel button")
       }
     )
     anActionSheet.addAction(sampleAction)
@@ -271,23 +269,20 @@ override func viewDidLoad()
   //-------------------------------------------------------------------------------------------------------
   // MARK: - UIImagePickerControllerDelegate methods -
   //-------------------------------------------------------------------------------------------------------
-  
-  func imagePickerController(
-    picker: UIImagePickerController,
-    didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
-  {
-    println("In \(__FUNCTION__)")
-    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-    {
-      picker.dismissViewControllerAnimated(true, completion: nil)
-      cropView.imageToCrop = image
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        print("In \(__FUNCTION__)")
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            picker.dismissViewControllerAnimated(true, completion: nil)
+            cropView.imageToCrop = image
+        }
+        //cropView.setNeedsLayout()
     }
-    //cropView.setNeedsLayout()
-  }
+    
   
   func imagePickerControllerDidCancel(picker: UIImagePickerController)
   {
-    println("In \(__FUNCTION__)")
+    print("In \(__FUNCTION__)")
     picker.dismissViewControllerAnimated(true, completion: nil)
   }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 //---------------------------------------------------------------------------------------------------------
 
-func rectFromStartAndEnd(var startPoint:CGPoint, endPoint: CGPoint) -> CGRect
+func rectFromStartAndEnd( startPoint:CGPoint, endPoint: CGPoint) -> CGRect
 {
   var  top, left, bottom, right: CGFloat;
   top = min(startPoint.y, endPoint.y)
@@ -19,7 +19,7 @@ func rectFromStartAndEnd(var startPoint:CGPoint, endPoint: CGPoint) -> CGRect
   left = min(startPoint.x, endPoint.x)
   right = max(startPoint.x, endPoint.x)
   
-  var result = CGRectMake(left, top, right-left, bottom-top)
+  let result = CGRectMake(left, top, right-left, bottom-top)
   return result
 }
 
@@ -55,7 +55,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     {
       if let realCropRect = newValue
       {
-        var newRect:CGRect =  CGRectIntersection(realCropRect, imageRect!)
+        let newRect:CGRect =  CGRectIntersection(realCropRect, imageRect!)
         internalCropRect = newRect
         cornerpoints[0].centerPoint = newRect.origin
         cornerpoints[1].centerPoint = CGPointMake(CGRectGetMaxX(newRect), newRect.origin.y)
@@ -95,16 +95,17 @@ class CroppableImageView: UIView, CornerpointClientProtocol
   {
     for i in 1...4
     {
-      var aCornerpointView = CornerpointView()
+      let aCornerpointView = CornerpointView()
        cornerpoints.append(aCornerpointView)
       //cornerpoints += [CornerpointView()]
     }
     viewForImage = UIView(frame: CGRectZero)
-    viewForImage.setTranslatesAutoresizingMaskIntoConstraints(false)
+    viewForImage.translatesAutoresizingMaskIntoConstraints = false
+    
     aspect = 1
     
     dragger = UIPanGestureRecognizer()
-    super.init(coder: aDecoder)
+    super.init(coder: aDecoder)!
     dragger.addTarget(self as AnyObject, action: "handleDragInView:")
     viewForImage.frame = self.frame;
     self.addGestureRecognizer(dragger)
@@ -208,12 +209,12 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       path.fill()
 
       imageToCrop?.drawInRect(imageRect!)
-      var result = UIGraphicsGetImageFromCurrentImageContext()
+      let result = UIGraphicsGetImageFromCurrentImageContext()
       
       UIGraphicsEndImageContext();
       
-      var theImageRef = result!.CGImage
-      viewForImage.layer.contents = theImageRef as AnyObject
+      let theImageRef = result!.CGImage
+      viewForImage.layer.contents = theImageRef as? AnyObject
     }
   }
   
@@ -259,7 +260,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       
       UIGraphicsBeginImageContextWithOptions(cropRect.size, true, 1)
       imageToCrop?.drawInRect(drawRect)
-      var result = UIGraphicsGetImageFromCurrentImageContext()
+      let result = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext();
       
       return result
@@ -318,7 +319,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
       {
         //The user is creating a new rect, so just create it from
         //start and end points
-        self.cropRect = rectFromStartAndEnd(startPoint!, newPoint)
+        self.cropRect = rectFromStartAndEnd(startPoint!, endPoint: newPoint)
       }
     default:
       draggingRect = false;
@@ -345,7 +346,7 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     var pointIndex: Int?
 
     //Find the cornerpoint the user dragged in the array.
-    for (index, aCornerpoint) in enumerate(cornerpoints)
+    for (index, aCornerpoint) in cornerpoints.enumerate()
     {
       if newCornerPoint == aCornerpoint
       {
@@ -359,9 +360,9 @@ class CroppableImageView: UIView, CornerpointClientProtocol
     }
 
     //Find the index of the opposite corner.
-    var otherIndex:Int = (pointIndex! + 2) % 4
+    let otherIndex:Int = (pointIndex! + 2) % 4
     
     //Calculate a new cropRect using those 2 corners
-    cropRect = rectFromStartAndEnd(newCornerPoint.centerPoint!, cornerpoints[otherIndex].centerPoint!)
+    cropRect = rectFromStartAndEnd(newCornerPoint.centerPoint!, endPoint: cornerpoints[otherIndex].centerPoint!)
     }
   }
