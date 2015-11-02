@@ -41,7 +41,7 @@ class CornerpointView: UIView
 
   required init(coder aDecoder: NSCoder)
   {
-    super.init(coder: aDecoder)
+    super.init(coder: aDecoder)!
     self.doSetup()
   }
   
@@ -56,7 +56,7 @@ class CornerpointView: UIView
     self.bounds.size = CGSizeMake(30, 30)
     
     //Add a layer to the view to draw an outline for this corner point.
-    var newLayer = CALayer()
+    let newLayer = CALayer()
     newLayer.position = CGPointMake(CGRectGetMidX(self.layer.bounds), CGRectGetMidY(self.layer.bounds))
     newLayer.bounds.size = CGSizeMake(7, 7)
     newLayer.borderWidth = 1.0
