@@ -28,9 +28,9 @@ The only method in the `CornerpointClientProtocol` is cornerHasChanged. It simpl
 
 ###The `ViewController` class:
 
-The 'ViewController` class coordinates between the `CropppableImageView` and the button that triggers image cropping.
+The `ViewController` class coordinates between the `CropppableImageView` and the button that triggers image cropping.
 
-The 'ViewController` class also offers a button to load a new image into the image view. 
+The `ViewController` class also offers a button to load a new image into the image view. 
 
 Loading a new image is handled by the `handleSelectImgButton` `IBAction` method. This method uses the new `UIAlertController` class, added in iOS 8 instead of the now-deprecated `UIAlertView`. (Note that if you want your app to run under iOS 7 and 8, you will still have to use a UIAlertView, or write code that uses a UIAlertView on iOS 7 and a `UIAlertController` under iOS 8) 
 

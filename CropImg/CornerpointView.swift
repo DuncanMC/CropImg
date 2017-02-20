@@ -22,46 +22,47 @@ class CornerpointView: UIView
     {
       if let newCenter = centerPoint
       {
-        self.hidden = false
-        self.center = newCenter
+        isHidden = false
+        center = newCenter
         //println("newCenter = \(newCenter)")
       }
       else
       {
-        self.hidden = true
+        isHidden = true
       }
     }
   }
   
   init()
   {
-    super.init(frame:CGRectZero)
-    self.doSetup()
+    super.init(frame:CGRect.zero)
+    doSetup()
   }
 
-  required init(coder aDecoder: NSCoder)
+  required init?(coder aDecoder: NSCoder)
   {
     super.init(coder: aDecoder)
-    self.doSetup()
+    doSetup()
   }
   
   //-------------------------------------------------------------------------------------------------------
   
   func doSetup()
   {
-    dragger = UIPanGestureRecognizer(target: self as AnyObject, action: "handleCornerDrag:")
-    self.addGestureRecognizer(dragger)
+    dragger = UIPanGestureRecognizer(target: self as AnyObject,
+                                     action: #selector(CornerpointView.handleCornerDrag(_:)))
+    addGestureRecognizer(dragger)
 
     //Make the corner point view big enough to drag with a finger.
-    self.bounds.size = CGSizeMake(30, 30)
+    bounds.size = CGSize(width: 30, height: 30)
     
     //Add a layer to the view to draw an outline for this corner point.
-    var newLayer = CALayer()
-    newLayer.position = CGPointMake(CGRectGetMidX(self.layer.bounds), CGRectGetMidY(self.layer.bounds))
-    newLayer.bounds.size = CGSizeMake(7, 7)
+    let newLayer = CALayer()
+    newLayer.position = CGPoint(x: layer.bounds.midX, y: layer.bounds.midY)
+    newLayer.bounds.size = CGSize(width: 7, height: 7)
     newLayer.borderWidth = 1.0
-    newLayer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).CGColor
-    newLayer.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5).CGColor
+    newLayer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
+    newLayer.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5).cgColor
     
     
     //This code adds faint outlines around the draggable region of each corner so you can see it.
@@ -70,46 +71,46 @@ class CornerpointView: UIView
     {
       //Create a faint white 3-point thick rectangle for the draggable area
       var shapeLayer = CAShapeLayer()
-      shapeLayer.frame = self.layer.bounds
-      shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
-      shapeLayer.strokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2).CGColor
+      shapeLayer.frame = layer.bounds
+      shapeLayer.path = UIBezierPath(rect: layer.bounds).cgPath
+      shapeLayer.strokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2).cgColor
       shapeLayer.lineWidth = 3.0;
-      shapeLayer.fillColor = UIColor.clearColor().CGColor
-      self.layer.addSublayer(shapeLayer)
+      shapeLayer.fillColor = UIColor.clear.cgColor
+      layer.addSublayer(shapeLayer)
       
       //Create a faint black 1 pixel rectangle to go on top  white rectangle
       shapeLayer = CAShapeLayer()
-      shapeLayer.frame = self.layer.bounds
-      shapeLayer.path = UIBezierPath(rect: self.layer.bounds).CGPath
-      shapeLayer.strokeColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor
+      shapeLayer.frame = layer.bounds
+      shapeLayer.path = UIBezierPath(rect: layer.bounds).cgPath
+      shapeLayer.strokeColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
       shapeLayer.lineWidth = 1;
-      shapeLayer.fillColor = UIColor.clearColor().CGColor
-      self.layer.addSublayer(shapeLayer)
+      shapeLayer.fillColor = UIColor.clear.cgColor
+      layer.addSublayer(shapeLayer)
       
     }
-    self.layer.addSublayer(newLayer)    
+    layer.addSublayer(newLayer)    
     
   }
   
   //-------------------------------------------------------------------------------------------------------
   
-  func handleCornerDrag(thePanner: UIPanGestureRecognizer)
+  func handleCornerDrag(_ thePanner: UIPanGestureRecognizer)
   {
     //println("In cornerpoint dragger")
-    let newPoint = thePanner.locationInView(self)
+//    let newPoint = thePanner.locationInView(self)
 
     switch thePanner.state
     {
-    case UIGestureRecognizerState.Began:
+    case UIGestureRecognizerState.began:
       dragStart = centerPoint
-      thePanner.setTranslation(CGPointZero,
-        inView: self)
+      thePanner.setTranslation(CGPoint.zero,
+        in: self)
       //println("In view dragger began at \(newPoint)")
       
-    case UIGestureRecognizerState.Changed:
+    case UIGestureRecognizerState.changed:
       //println("In view dragger changed at \(newPoint)")
-      centerPoint = CGPointMake(dragStart.x + thePanner.translationInView(self).x,
-        dragStart.y + thePanner.translationInView(self).y)
+      centerPoint = CGPoint(x: dragStart.x + thePanner.translation(in: self).x,
+        y: dragStart.y + thePanner.translation(in: self).y)
       
       //If we have a delegate, notify it that this corner has moved.
       //This code uses "optional binding" to convert the optional "cornerpointDelegate" to a required 
