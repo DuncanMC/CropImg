@@ -11,10 +11,8 @@ import Foundation
 /// Function to execute a block after a delay.
 /// - parameter delay:: Double delay in seconds
 
-func delay(_ delay: Double, block:@escaping ()->())
-{
-  let nSecDispatchTime = DispatchTime.now() + delay;
-  let queue = DispatchQueue.main
-  
-  queue.asyncAfter(deadline: nSecDispatchTime, execute: block)
+func delay(_ delay: Double, block:@escaping ()->()) {
+    let nSecDispatchTime = DispatchTime.now() + delay;
+    let queue = DispatchQueue.main
+    queue.asyncAfter(deadline: nSecDispatchTime, execute: block)
 }

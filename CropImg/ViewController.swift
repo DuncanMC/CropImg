@@ -12,16 +12,14 @@ import Photos
 
 //-------------------------------------------------------------------------------------------------------
 
-func loadShutterSoundPlayer() -> AVAudioPlayer?
-{
+func loadShutterSoundPlayer() -> AVAudioPlayer? {
   let theMainBundle = Bundle.main
   let filename = "Shutter sound"
   let fileType = "mp3"
   let soundfilePath: String? = theMainBundle.path(forResource: filename,
     ofType: fileType,
     inDirectory: nil)
-  if soundfilePath == nil
-  {
+  if soundfilePath == nil {
     return nil
   }
   //println("soundfilePath = \(soundfilePath)")
@@ -34,12 +32,10 @@ func loadShutterSoundPlayer() -> AVAudioPlayer?
     error = error1
     result = nil
   }
-  if let requiredErr = error
-  {
+  if let requiredErr = error {
     print("AVAudioPlayer.init failed with error \(requiredErr.debugDescription)")
   }
-  if result?.settings != nil
-  {
+  if result?.settings != nil {
     //println("soundplayer.settings = \(settings)")
   }
   result?.prepareToPlay()
@@ -53,8 +49,7 @@ class ViewController:
   CroppableImageViewDelegateProtocol,
   UIImagePickerControllerDelegate,
   UINavigationControllerDelegate,
-  UIPopoverControllerDelegate
-{
+  UIPopoverControllerDelegate {
   @IBOutlet weak var whiteView: UIView!
   @IBOutlet weak var cropButton: UIButton!
   @IBOutlet weak var cropView: CroppableImageView!
@@ -69,8 +64,7 @@ class ViewController:
       }
     }
   }
-override func viewDidLoad()
-{
+override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
   }
@@ -80,20 +74,17 @@ override func viewDidLoad()
     // Dispose of any resources that can be recreated.
   }
 
-  enum ImageSource: Int
-  {
+  enum ImageSource: Int {
     case camera = 1
     case photoLibrary
   }
   
   func pickImageFromSource(
     _ theImageSource: ImageSource,
-    fromButton: UIButton)
-  {
+    fromButton: UIButton) {
     let imagePicker = UIImagePickerController()
     imagePicker.delegate = self
-    switch theImageSource
-    {
+    switch theImageSource {
     case .camera:
       print("User chose take new pic button")
       imagePicker.sourceType = UIImagePickerControllerSourceType.camera
@@ -102,73 +93,47 @@ override func viewDidLoad()
       print("User chose select pic button")
       imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
     }
-    if UIDevice.current.userInterfaceIdiom == .pad
-    {
-      if theImageSource == ImageSource.camera
-      {
+    if UIDevice.current.userInterfaceIdiom == .pad {
+      if theImageSource == ImageSource.camera {
       self.present(
         imagePicker,
-        animated: true)
-        {
+        animated: true) {
           //println("In image picker completion block")
         }
-      }
-      else
-      {
+      } else {
         self.present(
           imagePicker,
           animated: true)
           {
             //println("In image picker completion block")
         }
-//        //Import from library on iPad
-//        let pickPhotoPopover = UIPopoverController.init(contentViewController: imagePicker)
-//        //pickPhotoPopover.delegate = self
-//        let buttonRect = fromButton.convertRect(
-//          fromButton.bounds,
-//          toView: self.view.window?.rootViewController?.view)
-//        imagePicker.delegate = self;
-//        pickPhotoPopover.presentPopoverFromRect(
-//          buttonRect,
-//          inView: self.view,
-//          permittedArrowDirections: UIPopoverArrowDirection.Any,
-//          animated: true)
-//        
       }
-    }
-    else
-    {
+    } else {
       self.present(
         imagePicker,
-        animated: true)
-        {
+        animated: true) {
           print("In image picker completion block")
       }
-      
     }
   }
   
-  func saveImageToCameraRoll(_ image: UIImage) {
-     PHPhotoLibrary.shared().performChanges({
-     PHAssetChangeRequest.creationRequestForAsset(from: image)
-     }, completionHandler: { success, error in
-     if success {
-     // Saved successfully!
-     }
-     else if let error = error {
-      print("Save failed with error " + String(describing: error))
-     }
-     else {
-     }
-     })
-
-  }
+    func saveImageToCameraRoll(_ image: UIImage) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAsset(from: image)
+        }, completionHandler: { success, error in
+            if success {
+                // Saved successfully!
+            } else if let error = error {
+                print("Save failed with error " + String(describing: error))
+            } else {
+            }
+        })
+    }
   //-------------------------------------------------------------------------------------------------------
   // MARK: - IBAction methods -
   //-------------------------------------------------------------------------------------------------------
 
-  @IBAction func handleSelectImgButton(_ sender: UIButton)
-  {
+  @IBAction func handleSelectImgButton(_ sender: UIButton) {
     /*See if the current device has a camera. (I don't think any device that runs iOS 8 lacks a camera,
     But the simulator doesn't offer a camera, so this prevents the
     "Take a new picture" button from crashing the simulator.
@@ -186,8 +151,7 @@ override func viewDidLoad()
     let sampleAction = UIAlertAction(
       title:"Load Sample Image",
       style: UIAlertActionStyle.default,
-      handler:
-      {
+      handler: {
         (alert: UIAlertAction)  in
         self.cropView.imageToCrop = UIImage(named: "Scampers 6685")
       }
@@ -195,13 +159,11 @@ override func viewDidLoad()
     
     //If the current device has a camera, add a "Take a New Picture" button
     var takePicAction: UIAlertAction? = nil
-    if deviceHasCamera
-    {
+    if deviceHasCamera {
       takePicAction = UIAlertAction(
         title: "Take a New Picture",
         style: UIAlertActionStyle.default,
-        handler:
-        {
+        handler: {
           (alert: UIAlertAction)  in
           self.pickImageFromSource(
             ImageSource.camera,
@@ -214,8 +176,7 @@ override func viewDidLoad()
     let selectPicAction = UIAlertAction(
       title:"Select Picture from library",
       style: UIAlertActionStyle.default,
-      handler:
-      {
+      handler: {
         (alert: UIAlertAction)  in
         self.pickImageFromSource(
           ImageSource.photoLibrary,
@@ -226,16 +187,14 @@ override func viewDidLoad()
     let cancelAction = UIAlertAction(
       title:"Cancel",
       style: UIAlertActionStyle.cancel,
-      handler:
-      {
+      handler: {
         (alert: UIAlertAction)  in
         print("User chose cancel button")
       }
     )
     anActionSheet.addAction(sampleAction)
     
-    if let requiredtakePicAction = takePicAction
-    {
+    if let requiredtakePicAction = takePicAction {
       anActionSheet.addAction(requiredtakePicAction)
     }
     anActionSheet.addAction(selectPicAction)
@@ -245,61 +204,49 @@ override func viewDidLoad()
     popover?.sourceView = sender
     popover?.sourceRect = sender.bounds;
     
-    self.present(anActionSheet, animated: true)
-      {
+    self.present(anActionSheet, animated: true) {
         //println("In action sheet completion block")
     }
   }
   
   
-  @IBAction func handleCropButton(_ sender: UIButton)
-  {
-//    var aFloat: Float
-//    aFloat = (sender.currentTitle! as NSString).floatValue
-    //println("Button title = \(buttonTitle)")
-    if let croppedImage = cropView.croppedImage()
-    {
-      self.whiteView.isHidden = false
-      delay(0)
-        {
-          self.shutterSoundPlayer?.play()
-          self.saveImageToCameraRoll(croppedImage)
-          //UIImageWriteToSavedPhotosAlbum(croppedImage, nil, nil, nil);
-          
-          delay(0.2)
-            {
-              self.whiteView.isHidden = true
-              self.shutterSoundPlayer?.prepareToPlay()
-          }
-      }
-      
-      
-      //The code below saves the cropped image to a file in the user's documents directory.
-      /*------------------------
-      let jpegData = UIImageJPEGRepresentation(croppedImage, 0.9)
-      let documentsPath:String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
-      NSSearchPathDomainMask.UserDomainMask,
-      true).last as String
-      let filename = "croppedImage.jpg"
-      var filePath = documentsPath.stringByAppendingPathComponent(filename)
-      if (jpegData.writeToFile(filePath, atomically: true))
-      {
-      println("Saved image to path \(filePath)")
-      }
-      else
-      {
-      println("Error saving file")
-      }
-      */
+    @IBAction func handleCropButton(_ sender: UIButton) {
+        if let croppedImage = cropView.croppedImage() {
+            self.whiteView.isHidden = false
+            delay(0) {
+                self.shutterSoundPlayer?.play()
+                self.saveImageToCameraRoll(croppedImage)
+                //UIImageWriteToSavedPhotosAlbum(croppedImage, nil, nil, nil);
+
+                delay(0.2) {
+                    self.whiteView.isHidden = true
+                    self.shutterSoundPlayer?.prepareToPlay()
+                }
+            }
+
+
+            //The code below saves the cropped image to a file in the user's documents directory.
+            /*
+            let jpegData = UIImageJPEGRepresentation(croppedImage, 0.9)
+            let documentsPath:String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
+                                                                           NSSearchPathDomainMask.UserDomainMask,
+                                                                           true).last as String
+            let filename = "croppedImage.jpg"
+            var filePath = documentsPath.stringByAppendingPathComponent(filename)
+            if (jpegData.writeToFile(filePath, atomically: true)) {
+                println("Saved image to path \(filePath)")
+            } else {
+                println("Error saving file")
+            }
+            */
+        }
     }
-  }
 
   //-------------------------------------------------------------------------------------------------------
   // MARK: - CroppableImageViewDelegateProtocol methods -
   //-------------------------------------------------------------------------------------------------------
 
-  func haveValidCropRect(_ haveValidCropRect:Bool)
-  {
+  func haveValidCropRect(_ haveValidCropRect:Bool) {
     //println("In haveValidCropRect. Value = \(haveValidCropRect)")
     cropButton.isEnabled = haveValidCropRect
   }
@@ -309,19 +256,16 @@ override func viewDidLoad()
   
   func imagePickerController(
     _ picker: UIImagePickerController,
-    didFinishPickingMediaWithInfo info: [String : Any])
-  {
+    didFinishPickingMediaWithInfo info: [String : Any]) {
     print("In \(#function)")
-    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-    {
+    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
       picker.dismiss(animated: true, completion: nil)
       cropView.imageToCrop = image
     }
     //cropView.setNeedsLayout()
   }
   
-  func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
-  {
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     print("In \(#function)")
     picker.dismiss(animated: true, completion: nil)
   }

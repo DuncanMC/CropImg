@@ -8,47 +8,38 @@
 
 import UIKit
 
-class CornerpointView: UIView
-{
+class CornerpointView: UIView {
   var drawCornerOutlines = false
   var cornerpointDelegate: CornerpointClientProtocol?
   var dragger: UIPanGestureRecognizer!
   var dragStart: CGPoint!
   
   //the centerPoint property is an optional. Set it to nil to hide this corner point.
-  var centerPoint: CGPoint?
-    {
-    didSet(oldPoint)
-    {
-      if let newCenter = centerPoint
-      {
+  var centerPoint: CGPoint? {
+    didSet(oldPoint) {
+      if let newCenter = centerPoint {
         isHidden = false
         center = newCenter
         //println("newCenter = \(newCenter)")
-      }
-      else
-      {
+      } else {
         isHidden = true
       }
     }
   }
   
-  init()
-  {
+  init() {
     super.init(frame:CGRect.zero)
     doSetup()
   }
 
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     doSetup()
   }
   
   //-------------------------------------------------------------------------------------------------------
   
-  func doSetup()
-  {
+  func doSetup() {
     dragger = UIPanGestureRecognizer(target: self as AnyObject,
                                      action: #selector(CornerpointView.handleCornerDrag(_:)))
     addGestureRecognizer(dragger)
@@ -67,8 +58,7 @@ class CornerpointView: UIView
     
     //This code adds faint outlines around the draggable region of each corner so you can see it.
     //I think it looks better NOT to draw an outline, but the outline does let you know where to drag.
-    if drawCornerOutlines
-    {
+    if drawCornerOutlines {
       //Create a faint white 3-point thick rectangle for the draggable area
       var shapeLayer = CAShapeLayer()
       shapeLayer.frame = layer.bounds
@@ -89,18 +79,12 @@ class CornerpointView: UIView
       
     }
     layer.addSublayer(newLayer)    
-    
   }
   
   //-------------------------------------------------------------------------------------------------------
   
-  func handleCornerDrag(_ thePanner: UIPanGestureRecognizer)
-  {
-    //println("In cornerpoint dragger")
-//    let newPoint = thePanner.locationInView(self)
-
-    switch thePanner.state
-    {
+  @objc func handleCornerDrag(_ thePanner: UIPanGestureRecognizer) {
+    switch thePanner.state {
     case UIGestureRecognizerState.began:
       dragStart = centerPoint
       thePanner.setTranslation(CGPoint.zero,
@@ -115,8 +99,7 @@ class CornerpointView: UIView
       //If we have a delegate, notify it that this corner has moved.
       //This code uses "optional binding" to convert the optional "cornerpointDelegate" to a required 
       //variable "theDelegate". If cornerpointDelegate == nil, the code that follows is skipped.
-      if let theDelegate = cornerpointDelegate
-      {
+      if let theDelegate = cornerpointDelegate {
         theDelegate.cornerHasChanged(self)
       }
     default:
