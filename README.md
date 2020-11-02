@@ -1,10 +1,10 @@
-##CropImg
+## CropImg
 -----
 
 A sample application for cropping images, written in Swift.
 
 
-###The `CropppableImageView` class:
+### The `CropppableImageView` class:
 
 The main class is the `CropppableImageView` class, which is a subclass of UIView.
 
@@ -14,7 +14,7 @@ If you need to be notified if there is a valid crop area defined, set up a deleg
 
 The `CropppableImageView` has a method `croppedImage()` that returns a new image containing the portion of the source image the user has selected, or nil if the selection rectangle isn't valid.
 
-###The `CornerpointView` class:
+### The `CornerpointView` class:
 
 The `CropppableImageView` class uses another class, `CornerpointView`, to draw the cornerpoints of the image view, and allow dragging of the cornerpoints. A `CropppableImageView` sets up 4 `CornerpointView` objects and adds them as subviews in it's init method.
 
@@ -26,7 +26,7 @@ The `CornerpointView` class has an optional `cornerpointDelegate` property. (If 
 
 The only method in the `CornerpointClientProtocol` is cornerHasChanged. It simply tells the delegate that the user has moved the corner point. It passes a pointer to itself so the delegate can tell which corner has changed.
 
-###The `ViewController` class:
+### The `ViewController` class:
 
 The `ViewController` class coordinates between the `CropppableImageView` and the button that triggers image cropping.
 
